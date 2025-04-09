@@ -38,6 +38,12 @@ public class ListaReproduccion {
     public Cancion siguiente() {
         if (actual != null && actual.siguiente != null) {
             actual = actual.siguiente;
+        } else if (loop) {
+            NodoDoble temp = actual;
+            while (temp.anterior != null) {
+                temp = temp.anterior;
+            }
+            actual = temp;
         }
         return getActual();
     }
@@ -45,6 +51,12 @@ public class ListaReproduccion {
     public Cancion anterior() {
         if (actual != null && actual.anterior != null) {
             actual = actual.anterior;
+        } else if (loop) {
+            NodoDoble temp = actual;
+            while (temp.siguiente != null) {
+                temp = temp.siguiente;
+            }
+            actual = temp;
         }
         return getActual();
     }
